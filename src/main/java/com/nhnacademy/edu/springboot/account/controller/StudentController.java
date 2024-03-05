@@ -1,8 +1,8 @@
 package com.nhnacademy.edu.springboot.account.controller;
 
+import com.nhnacademy.edu.springboot.account.domain.Student;
+import com.nhnacademy.edu.springboot.account.exception.StudentNotFoundException;
 import com.nhnacademy.edu.springboot.account.repository.StudentRepository;
-import com.nhnacademy.springmvc.domain.Student;
-import com.nhnacademy.springmvc.exception.StudentNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +28,6 @@ public class StudentController {
 
             ModelAndView mav = new ModelAndView("studentView");
             mav.addObject("student", studentRepository.findById(studentId));
-            log.debug("view raw///id: {}, map:{}", studentId, studentRepository.studentMap);
             return mav;
         } else throw new StudentNotFoundException();
 
@@ -37,11 +36,10 @@ public class StudentController {
     @GetMapping(value = "/{studentId}", params = "hideScore=yes")
     public String viewStudentWithScoreHidden(@PathVariable Long studentId, Model model) {
 
-        if (studentId != null && studentRepository.exists(studentId)) {
+        if (studentId != null && studentRepository.existsById(studentId)) {
 
-            Student student = studentRepository.getStudent(studentId);
+            Student student = studentRepository.findById(studentId).orElse(null);
             model.addAttribute("student", Student.constructScoreAndCommentMaskedStudent(student));
-            log.debug("view masked///id: {}, map:{}", studentId, studentRepository.studentMap);
             return "studentView";
         } else
             throw new StudentNotFoundException();

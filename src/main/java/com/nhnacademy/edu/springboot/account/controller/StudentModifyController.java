@@ -1,11 +1,10 @@
 package com.nhnacademy.edu.springboot.account.controller;
 
-import com.nhnacademy.springmvc.domain.Student;
-import com.nhnacademy.springmvc.domain.StudentModifyRequest;
-import com.nhnacademy.springmvc.exception.StudentNotFoundException;
-import com.nhnacademy.springmvc.exception.ValidationFailedException;
-import com.nhnacademy.springmvc.repository.StudentRepository;
-import com.nhnacademy.springmvc.repository.StudentRepositoryImpl;
+import com.nhnacademy.edu.springboot.account.domain.Student;
+import com.nhnacademy.edu.springboot.account.domain.StudentModifyRequest;
+import com.nhnacademy.edu.springboot.account.exception.StudentNotFoundException;
+import com.nhnacademy.edu.springboot.account.exception.ValidationFailedException;
+import com.nhnacademy.edu.springboot.account.repository.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,17 +17,17 @@ import javax.validation.Valid;
 @RequestMapping("/student/{studentId}/modify")
 @Slf4j
 public class StudentModifyController {
-    private final StudentRepositoryImpl studentRepository;
+    private final StudentRepository studentRepository;
 
     public StudentModifyController(StudentRepository studentRepository) {
-        this.studentRepository = (StudentRepositoryImpl) studentRepository;
+        this.studentRepository = studentRepository;
     }
 
     @GetMapping
     public String studentModifyForm(@PathVariable Long studentId, Model model) {
 
-        if (studentId != null && studentRepository.exists(studentId)) {
-            model.addAttribute("student", studentRepository.getStudent(studentId));
+        if (studentId != null && studentRepository.existsById(studentId)) {
+            model.addAttribute("student", studentRepository.findById(studentId));
             return "studentModify";
 
         } else throw new StudentNotFoundException();
@@ -40,7 +39,7 @@ public class StudentModifyController {
                                 BindingResult bindingResult,
                                 Model model) {
 
-        if (studentId != null && studentRepository.exists(studentId)) {
+        if (studentId != null && studentRepository.existsById(studentId)) {
 
             if (bindingResult.hasErrors()) {
                 throw new ValidationFailedException(bindingResult);
@@ -49,7 +48,7 @@ public class StudentModifyController {
             Student student = Student.construct(studentId, studentModifyRequest.getName(), studentModifyRequest.getEmail(),
                     studentModifyRequest.getScore(), studentModifyRequest.getComment());
 
-            studentRepository.modify(student);
+            studentRepository.save(student);
 
             model.addAttribute("student", student);
             return "modifySuccess";
