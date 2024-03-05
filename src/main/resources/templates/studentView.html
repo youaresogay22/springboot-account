@@ -1,0 +1,22 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8"/>
+    <title>학생 정보 조회</title>
+</head>
+<body>
+이름: [[${student.name}]]<br/>
+이메일: [[${student.email}]]<br/>
+
+<div th:if="${student.score  == -1}">
+    성적: *****<br/>
+</div>
+
+<div th:unless="${student.score  == -1}">
+    성적: ${student.score}<br/>
+</div>
+
+평가: [[${student.comment}]]<br/>
+<br/>
+<a href="/student/${student.id}/modify">정보 수정</a><br/>
+</body>
+</html>
