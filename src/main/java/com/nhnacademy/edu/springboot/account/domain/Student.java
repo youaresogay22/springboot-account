@@ -1,13 +1,21 @@
 package com.nhnacademy.edu.springboot.account.domain;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Getter
-@Setter
+@Entity
+@EqualsAndHashCode
+@NoArgsConstructor
+@ToString
 public class Student {
+    @Id
     private long id;
     private String name;
     private String email;

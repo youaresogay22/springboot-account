@@ -1,9 +1,8 @@
 package com.nhnacademy.edu.springboot.account.controller;
 
+import com.nhnacademy.edu.springboot.account.repository.StudentRepository;
 import com.nhnacademy.springmvc.domain.Student;
 import com.nhnacademy.springmvc.exception.StudentNotFoundException;
-import com.nhnacademy.springmvc.repository.StudentRepository;
-import com.nhnacademy.springmvc.repository.StudentRepositoryImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,19 +15,19 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/student")
 @Slf4j
 public class StudentController {
-    private final StudentRepositoryImpl studentRepository;
+    private final StudentRepository studentRepository;
 
     public StudentController(StudentRepository studentRepository) {
-        this.studentRepository = (StudentRepositoryImpl) studentRepository;
+        this.studentRepository = studentRepository;
     }
 
     @GetMapping("/{studentId}")
     public ModelAndView viewStudent(@PathVariable("studentId") Long studentId) {
 
-        if (studentId != null && studentRepository.exists(studentId)) {
+        if (studentId != null && studentRepository.existsById(studentId)) {
 
             ModelAndView mav = new ModelAndView("studentView");
-            mav.addObject("student", studentRepository.getStudent(studentId));
+            mav.addObject("student", studentRepository.findById(studentId));
             log.debug("view raw///id: {}, map:{}", studentId, studentRepository.studentMap);
             return mav;
         } else throw new StudentNotFoundException();
