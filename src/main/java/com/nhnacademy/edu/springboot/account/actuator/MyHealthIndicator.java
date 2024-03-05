@@ -19,9 +19,9 @@ public class MyHealthIndicator implements HealthIndicator {
 
     @Override
     public Health health() {
-        if (isAlive = true) {
+        if (isAlive) {
             return Health.up().withDetail("maintenance", "false").build();
-            
+
         } else return Health.down().withDetail("maintenance", "true").build();
     }
 
