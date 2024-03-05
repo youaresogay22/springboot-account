@@ -42,4 +42,9 @@ public class DummyAccountService implements AccountService {
     public void deleteAccount(Long id) {
 
     }
+
+    @Override
+    public String getNum() {
+        return num;
+    }
 }

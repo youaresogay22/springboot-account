@@ -13,4 +13,6 @@ public interface AccountService {
     Account createAccount(Account account);
 
     void deleteAccount(Long id);
+
+    String getNum();
 }

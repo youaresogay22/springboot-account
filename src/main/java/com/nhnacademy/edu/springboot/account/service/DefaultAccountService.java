@@ -50,4 +50,9 @@ public class DefaultAccountService implements AccountService {
     public void deleteAccount(Long id) {
         accountRepository.deleteById(id);
     }
+
+    @Override
+    public String getNum() {
+        return num;
+    }
 }

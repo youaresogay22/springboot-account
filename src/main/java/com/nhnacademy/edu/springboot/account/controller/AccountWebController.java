@@ -26,7 +26,7 @@ public class AccountWebController {
 
     @GetMapping("/web/accounts")
     public String getAccount(Model model) {
-        model.addAttribute("account", new Account(1L, accountService, 1_000));
+        model.addAttribute("account", new Account(1L, accountService.getNum(), 1_000));
         return "account";
     }
 }
