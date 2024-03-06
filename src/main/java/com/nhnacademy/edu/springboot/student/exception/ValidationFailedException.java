@@ -1,4 +1,4 @@
-package com.nhnacademy.edu.springboot.account.exception;
+package com.nhnacademy.edu.springboot.student.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;

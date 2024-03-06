@@ -1,10 +1,10 @@
-package com.nhnacademy.edu.springboot.account.controller;
+package com.nhnacademy.edu.springboot.student.controller;
 
-import com.nhnacademy.edu.springboot.account.domain.Student;
-import com.nhnacademy.edu.springboot.account.domain.StudentModifyRequest;
-import com.nhnacademy.edu.springboot.account.exception.StudentNotFoundException;
-import com.nhnacademy.edu.springboot.account.exception.ValidationFailedException;
-import com.nhnacademy.edu.springboot.account.repository.StudentRepository;
+import com.nhnacademy.edu.springboot.student.domain.Student;
+import com.nhnacademy.edu.springboot.student.domain.StudentModifyRequest;
+import com.nhnacademy.edu.springboot.student.exception.StudentNotFoundException;
+import com.nhnacademy.edu.springboot.student.exception.ValidationFailedException;
+import com.nhnacademy.edu.springboot.student.repository.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

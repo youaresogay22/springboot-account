@@ -1,4 +1,4 @@
-package com.nhnacademy.edu.springboot.account.domain;
+package com.nhnacademy.edu.springboot.student.domain;
 
 import lombok.*;
 

@@ -1,9 +1,9 @@
-package com.nhnacademy.edu.springboot.account.controller;
+package com.nhnacademy.edu.springboot.student.controller;
 
-import com.nhnacademy.edu.springboot.account.domain.Student;
-import com.nhnacademy.edu.springboot.account.domain.StudentRegisterRequest;
-import com.nhnacademy.edu.springboot.account.exception.ValidationFailedException;
-import com.nhnacademy.edu.springboot.account.repository.StudentRepository;
+import com.nhnacademy.edu.springboot.student.domain.Student;
+import com.nhnacademy.edu.springboot.student.domain.StudentRegisterRequest;
+import com.nhnacademy.edu.springboot.student.exception.ValidationFailedException;
+import com.nhnacademy.edu.springboot.student.repository.StudentRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,14 +29,15 @@ public class StudentRegisterController {
     }
 
     @PostMapping
-    public ModelAndView registerStudent(@Valid @ModelAttribute StudentRegisterRequest studentRequest,
+    public ModelAndView registerStudent(@Valid @ModelAttribute StudentRegisterRequest studentRegisterRequest,
                                         BindingResult bindingResult) {
+
         if (bindingResult.hasErrors()) {
             throw new ValidationFailedException(bindingResult);
         }
 
-        Student student = studentRepository.save(Student.constructIdGeneratedStudent(studentRequest.getName(), studentRequest.getEmail(),
-                studentRequest.getScore(), studentRequest.getComment()));
+        Student student = studentRepository.save(Student.constructIdGeneratedStudent(studentRegisterRequest.getName(), studentRegisterRequest.getEmail(),
+                studentRegisterRequest.getScore(), studentRegisterRequest.getComment()));
 
         ModelAndView mav = new ModelAndView("registerSuccess");
         mav.addObject("student", student);
