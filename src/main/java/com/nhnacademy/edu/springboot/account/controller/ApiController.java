@@ -2,17 +2,17 @@ package com.nhnacademy.edu.springboot.account.controller;
 
 import com.nhnacademy.edu.springboot.account.domain.AccountIdDTO;
 import com.nhnacademy.edu.springboot.account.entity.Account;
-import com.nhnacademy.edu.springboot.account.serverproperties.ServerProperties;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@ConfigurationProperties(prefix = "my.openapi.port")
 public class ApiController {
-    @Autowired
-    private ServerProperties serverProperties;
+    private String account;
+    private String customer;
 
     @GetMapping("/accounts")
     public List<Account> getAccounts() {
