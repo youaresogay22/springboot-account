@@ -12,7 +12,7 @@
 </div>
 
 <div th:unless="${student.score  == -1}">
-    성적: ${student.score}<br/>
+    성적: [[${student.score}]]<br/>
 </div>
 
 평가: [[${student.comment}]]<br/>

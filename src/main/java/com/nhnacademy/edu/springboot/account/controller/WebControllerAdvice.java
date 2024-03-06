@@ -1,7 +1,7 @@
 package com.nhnacademy.edu.springboot.account.controller;
 
-import com.nhnacademy.springmvc.exception.StudentNotFoundException;
-import com.nhnacademy.springmvc.exception.ValidationFailedException;
+import com.nhnacademy.edu.springboot.account.exception.StudentNotFoundException;
+import com.nhnacademy.edu.springboot.account.exception.ValidationFailedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;

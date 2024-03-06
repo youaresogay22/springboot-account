@@ -4,6 +4,7 @@ import com.nhnacademy.edu.springboot.account.domain.Student;
 import com.nhnacademy.edu.springboot.account.exception.StudentNotFoundException;
 import com.nhnacademy.edu.springboot.account.repository.StudentRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class StudentController {
     private final StudentRepository studentRepository;
 
+    @Autowired
     public StudentController(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
@@ -27,7 +29,7 @@ public class StudentController {
         if (studentId != null && studentRepository.existsById(studentId)) {
 
             ModelAndView mav = new ModelAndView("studentView");
-            mav.addObject("student", studentRepository.findById(studentId));
+            mav.addObject("student", studentRepository.findById(studentId).orElse(null));
             return mav;
         } else throw new StudentNotFoundException();
 
