@@ -25,7 +25,7 @@ public class StudentModifyController {
 
     @GetMapping
     public String studentModifyForm(@PathVariable Long studentId, Model model) {
-
+        
         if (studentId != null && studentRepository.existsById(studentId)) {
             model.addAttribute("student", studentRepository.findById(studentId));
             return "studentModify";

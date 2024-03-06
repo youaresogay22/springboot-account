@@ -1,6 +1,5 @@
 package com.nhnacademy.edu.springboot.account.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.nhnacademy.edu.springboot.account.domain.Student;
 import com.nhnacademy.edu.springboot.account.exception.StudentNotFoundException;
 import com.nhnacademy.edu.springboot.account.repository.StudentRepository;
@@ -29,14 +28,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class StudentControllerTest {
     @Autowired
     MockMvc mockMvc;
-    ObjectMapper mapper;
     @MockBean
     StudentRepository studentRepository;
     Student testStudent;
 
     @BeforeEach
     void setUp() {
-        mapper = new ObjectMapper();
         testStudent = new Student(7L, "student", "test@test.kr", 99, "test");
     }
 
