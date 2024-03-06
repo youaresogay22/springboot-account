@@ -53,7 +53,7 @@ class StudentControllerTest {
         when(studentRepository.existsById(anyLong())).thenReturn(false);
 
         mockMvc.perform(get("/student/1"))
-                .andExpect(result -> Assertions.assertInstanceOf(StudentNotFoundException.class, result.getResolvedException())); //응답 본문의 내용을 검증
+                .andExpect(result -> Assertions.assertInstanceOf(StudentNotFoundException.class, result.getResolvedException()));
     }
 
     @Test
