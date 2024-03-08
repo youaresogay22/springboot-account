@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.nhnacademy.edu.springboot</groupId>
-    <artifactId>account</artifactId>
+    <artifactId>minidooray.gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>account</name>
-    <description>Demo project for Spring Boot</description>
+    <name>gateway</name>
+    <description>Mini dooray gateway</description>
     <properties>
         <java.version>11</java.version>
     </properties>
