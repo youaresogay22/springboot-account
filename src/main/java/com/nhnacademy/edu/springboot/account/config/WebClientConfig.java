@@ -12,7 +12,7 @@ import java.time.Duration;
 
 @Configuration
 public class WebClientConfig implements WebMvcConfigurer {
-    private final GetAccountInterceptor getAccountInterceptor;
+
 
     @Bean
     RestTemplate restTemplate(RestTemplateBuilder builder) {
@@ -24,7 +24,6 @@ public class WebClientConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(getAccountInterceptor)
-                .addPathPatterns("/usr/member/appointment");
+        registry.addInterceptor(new GetAccountInterceptor());
     }
 }
